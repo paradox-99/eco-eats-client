@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1, h2, h3 {
+    font-family: "Montserrat", sans-serif;
+}
+
+p{
+    font-family: "Manrope", sans-serif;
+}
+
+.menu li > *:not(ul, .menu-title, details, .btn).active {
+    background-color:transparent;
+    border: 1.5px solid #ff421c;
+    color:unset;
+}
+.menu li > *:not(ul, .menu-title, details, .btn).active:hover {
+    background-color: #ffccc1;
+    color: #131313;
+}
+.menu li > *:not(ul, .menu-title, details, .btn):hover {
+    background-color: #fc9a86;
+    color: #131313;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1100px) {
+    .menu :where(li:not(.menu-title) > *:not(ul, details, .menu-title, .btn)) {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+}
