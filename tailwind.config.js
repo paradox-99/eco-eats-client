@@ -8,7 +8,8 @@ export default {
     extend: {
       fontFamily: {
         'montserrat': '"Montserrat", sans-serif',
-        'manrope': '"Manrope", sans-serif'
+        'manrope': '"Manrope", sans-serif',
+        'pirata': '"Pirata One", system-ui'
       },
       
     },

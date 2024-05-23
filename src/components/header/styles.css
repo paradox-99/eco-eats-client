@@ -1,0 +1,113 @@
+.swiper-button-prev, .swiper-button-next {
+    position: absolute;
+    top: 93%;
+    height: 50px;
+    width: 50px;
+    background-color: #ff421c;
+    /* padding: 10px; */
+    border-radius: 50%;
+}
+
+.swiper-button-prev{
+    left: 90%;
+}
+
+.swiper-button-prev::after, .swiper-button-next::after{
+    font-size: 25px;
+    font-weight: 800;
+    color: white;
+}
+
+@media screen and (max-width: 349px) {
+    .swiper-button-prev, .swiper-button-next {
+        top: 90%;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+    
+    .swiper-button-prev{
+        left: 78%;
+    }
+    
+    .swiper-button-prev::after, .swiper-button-next::after{
+        font-size: 15px;
+    }
+}
+@media screen and (min-width: 350px) and (max-width: 499px) {
+    .swiper-button-prev, .swiper-button-next {
+        top: 90%;
+        height: 33px;
+        width: 33px;
+        border-radius: 50%;
+    }
+    
+    .swiper-button-prev{
+        left: 80%;
+    }
+    
+    .swiper-button-prev::after, .swiper-button-next::after{
+        font-size: 17px;
+    }
+}
+@media screen and (min-width: 500px) and (max-width: 599px) {
+    .swiper-button-prev, .swiper-button-next {
+        top: 90%;
+        height: 33px;
+        width: 33px;
+        border-radius: 50%;
+    }
+    
+    .swiper-button-prev{
+        left: 83%;
+    }
+    
+    .swiper-button-prev::after, .swiper-button-next::after{
+        font-size: 17px;
+    }
+}
+@media screen and (min-width: 601px) and (max-width: 759px) {
+    .swiper-button-prev, .swiper-button-next {
+        top: 90%;
+        height: 37px;
+        width: 37px;
+        border-radius: 50%;
+    }
+    
+    .swiper-button-prev{
+        left: 85%;
+    }
+    
+    .swiper-button-prev::after, .swiper-button-next::after{
+        font-size: 17px;
+    }
+}
+@media screen and (min-width: 760px) and (max-width: 900px) {
+    .swiper-button-prev, .swiper-button-next {
+        top: 90%;
+        height: 45px;
+        width: 45px;
+        border-radius: 50%;
+    }
+    
+    .swiper-button-prev{
+        left: 86%;
+    }
+    
+    .swiper-button-prev::after, .swiper-button-next::after{
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 901px) and (max-width: 1024px) {
+    .swiper-button-prev, .swiper-button-next {
+        top: 90%;
+        height: 45px;
+        width: 45px;
+        border-radius: 50%;
+    }
+    
+    .swiper-button-prev{
+        left: 88%;
+    }
+}

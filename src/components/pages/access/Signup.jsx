@@ -83,7 +83,7 @@ const Signup = () => {
     return (
         <div>
             <Helmet>
-                <title>Register</title>
+                <title>Sign up</title>
             </Helmet>
             <div className="flex justify-center mt-10 ">
                 <div className="w-[420px] border border-primary p-2 md:p-5 mb-8 shadow-lg rounded-lg bg-form_bg bg-center bg-contain bg-no-repeat font-nunito">

@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <AuthProv>
       <HelmetProvider>
         <Helmet>
-          <title>TripTastic</title>
+          <title>EcoEats</title>
         </Helmet>
         <RouterProvider router={router} />
         <Toaster />

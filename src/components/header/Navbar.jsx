@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from '/logo.png'
 import { AuthContext } from "../../provider/AuthProv";
+import { IoLogOutOutline } from "react-icons/io5";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
     const [theme, setTheme] = React.useState('light');
@@ -12,6 +13,8 @@ const Navbar = () => {
     React.useEffect(() => {
         document.querySelector('html').setAttribute('data-theme', theme);
     }, [theme]);
+
+    console.log(user)
 
     const routes = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
@@ -42,7 +45,7 @@ const Navbar = () => {
                             </label></div>
                         </ul>
                     </div>
-                    <a className="btn pl-0 btn-ghost text-xl font-montserrat hover:bg-inherit"><img src={logo} alt="Logo" className="w-36" /></a>
+                    <a className="btn pl-0 btn-ghost text-primary text-5xl font-pirata hover:bg-inherit">EcoEats</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 font-manrope lg:text-lg xl:text-xl">
@@ -50,7 +53,14 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to={'/signin'} className="btn btn-sm btn-primary md:btn text-base rounded md:text-lg lg:text-xl font-montserrat ">Login</Link>
+                    {user && <img src={user.photoURL} alt="" className="hidden lg:flex mr-1 md:mr-3 w-12 h-12 rounded-full" data-tooltip-id="my-tooltip" data-tooltip-content={user.displayName} />}
+                    {!user && <Link to={'/signin'} className="btn btn-sm btn-primary md:btn text-base rounded md:text-lg lg:text-xl font-montserrat ">Signin</Link>}
+                    {
+                        user && <button onClick={logOut} className="btn bg-inherit px-0 md:px-4 border-none shadow-none md:flex hidden bg-primary hover:bg-primary font-montserrat text-lg">Sign out</button>
+                    }
+                    {
+                        user && <button onClick={logOut} className="btn px-2 text-2xl border-none shadow-none md:hidden flex bg-primary hover:bg-primary"><IoLogOutOutline/></button>
+                    }
                 </div>
                 <label className="cursor-pointer md:grid place-items-center hidden ml-2">
                     <input type="checkbox" value="synthwave" onClick={toggleTheme} className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2" />
@@ -58,6 +68,7 @@ const Navbar = () => {
                     <svg className="col-start-2 row-start-1 stroke-base-100 fill-base-100" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
                 </label>
             </div>
+            <Tooltip id="my-tooltip" style={{ backgroundColor: "#0D2818", color: "white" }} />
         </div>
     );
 };
