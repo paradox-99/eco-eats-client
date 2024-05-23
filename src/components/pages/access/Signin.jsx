@@ -2,14 +2,15 @@ import { Helmet } from "react-helmet-async";
 import { IoEyeOffSharp, IoEyeSharp, IoWarningOutline } from "react-icons/io5";
 import { FcGoogle } from "react-icons/fc";
 import { BsGithub } from "react-icons/bs";
-// import facebook from "../../../assets/icons/facebook.png";
+import facebook from "../../../assets/Facebook_2.png";
 import { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from 'zod';
 import { AuthContext } from "../../../provider/AuthProv";
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
+import { VscSignIn } from "react-icons/vsc";
 
 const schema = z.object({
     email: z.string().email(),
@@ -159,23 +160,30 @@ const Signin = () => {
                 <title>Sign in</title>
             </Helmet>
             <div className="flex justify-center mt-10">
-                <div className=" border p-2 md:p-5 shadow-lg rounded-lg bg-form_bg bg-center bg-contain bg-no-repeat mb-8 font-nunito">
+                <div className=" border border-primary p-2 md:p-5 shadow-lg rounded-lg mb-8 font-nunito">
                     <div className="mb-5">
-                        <h2 className="text-2xl text-center mb-4 font-montserrat font-bold">Sign In</h2>
-                        <form className="flex flex-col gap-5 font-mono" onSubmit={handleSubmit(onSubmit)} >
-                            <div className="space-y-2">
-                                <label>Email</label><br />
-                                <input {...register('email')} type="email" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none focus:border-b-[3px] border-[#058C42]" placeholder="Email" />
-                                {errors.email && (<p className="text-red-500">{errors.email.message}</p>)}
+                        <div className="flex justify-center">
+                            <div className="flex justify-center w-fit p-3 rounded-full text-white text-4xl bg-[#ff421c]">
+                                <VscSignIn />
                             </div>
+                        </div>
+                        <h2 className="text-2xl text-center mb-4 font-bold mt-5">Sign In</h2>
+                        <form className="flex flex-col gap-5 font-mono" onSubmit={handleSubmit(onSubmit)} >
 
-                            <div className="space-y-2">
-                                <label>Password</label><br />
-                                <div className="flex bg-white items-center">
-                                    <input {...register('password')} type={showPassword ? "text" : "password"} className="md:text-lg lg:text-xl  p-2 w-full focus:outline-none focus:border-b-[3px] border-[#058C42]" placeholder="Password" />
+                            <fieldset className="border-2 border-primary">
+                                <legend className="text-center">Email</legend>
+                                <input {...register('email')} type="email" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" placeholder="Email" />
+                            </fieldset>
+                            {errors.email && (<p className="text-red-500">{errors.email.message}</p>)}
+
+                            <fieldset className="border-2 border-primary">
+                                <legend className="text-center">Password</legend>
+                                <div className="flex items-center">
+                                    <input {...register('password')} type={showPassword ? "text" : "password"} className="md:text-lg lg:text-xl  p-2 w-full focus:outline-none bg-inherit" placeholder="Password" />
                                     <span className="text-xl pr-1">{showPassword ? <IoEyeOffSharp onClick={() => setShowPassword(!showPassword)} /> : <IoEyeSharp onClick={() => setShowPassword(!showPassword)} />}</span>
                                 </div>
-                            </div>
+                            </fieldset>
+
 
                             {
                                 errors.password && (<p className="text-red-500">{errors.password.message}</p>)
@@ -185,18 +193,24 @@ const Signin = () => {
                             }
 
                             <Link className="text-lg text-center underline">Forgotten password</Link>
-                            <label className="input input-bordered flex items-center gap-2">
-                                <input type="submit" className="grow md:text-lg lg:text-xl font-semibold hover:cursor-pointer" value={isSubmitting ? "Loading..." : "Submit"} />
+                            <label className="input input-bordered border-primary flex items-center gap-2">
+                                <input type="submit" className="grow md:text-lg lg:text-xl font-semibold hover:cursor-pointer focus:outline-none" value={isSubmitting ? "Loading..." : "Submit"} />
                             </label>
                         </form>
-                        <p className="text-lg text-center font-mono my-3">Don`t have an account. <Link className=" text-blue-500 underline" to={"/sign-up"}>Create new</Link> </p>
+                        <p className="text-lg text-center font-mono my-3">Don`t have an account. <Link className=" text-blue-500 underline" to={"/signup"}>Create new</Link> </p>
                         <hr />
                         <div>
                             <h1 className="text-center text-xl font-semibold font-mono my-4">Sign in with</h1>
-                            <div className="flex gap-5 text-3xl justify-center">
-                                <button onClick={googleLogin}><FcGoogle /></button>
-                                <button onClick={gitHubLogin}><BsGithub /></button>
-                                <button onClick={facebookLogin}><img src={facebook} alt="" className="w-[32px]" /></button>
+                            <div className="gap-5 text-3xl place-content-center grid grid-cols-2 grid-rows-2">
+                                <div className="shadow-lg bg-base-100 flex justify-center">
+                                    <button onClick={googleLogin} className="flex items-center gap-2 font-manrope font-semibold p-3"><FcGoogle /><p className="text-xl">Google</p></button>
+                                </div>
+                                <div className="shadow-lg bg-base-100 flex justify-center">
+                                    <button onClick={gitHubLogin} className="flex items-center gap-2 font-manrope font-semibold p-3"><BsGithub /><p className="text-xl">GitHub</p></button>
+                                </div>
+                                <div className="w-1/2 self-center shadow-xl place-self-center col-span-2 ">
+                                    <button onClick={facebookLogin} className="flex items-center gap-2 font-manrope font-semibold p-3"><img src={facebook} alt="" className="h-8" /><p className="text-xl">Facebook</p></button>
+                                </div>
                             </div>
                         </div>
                     </div>
