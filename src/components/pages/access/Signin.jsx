@@ -170,13 +170,13 @@ const Signin = () => {
                         <h2 className="text-2xl text-center mb-4 font-bold mt-5">Sign In</h2>
                         <form className="flex flex-col gap-5 font-mono" onSubmit={handleSubmit(onSubmit)} >
 
-                            <fieldset className="border-2 border-primary">
+                            <fieldset className="border-2 border-primary rounded">
                                 <legend className="text-center">Email</legend>
                                 <input {...register('email')} type="email" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" placeholder="Email" />
                             </fieldset>
                             {errors.email && (<p className="text-red-500">{errors.email.message}</p>)}
 
-                            <fieldset className="border-2 border-primary">
+                            <fieldset className="border-2 border-primary rounded">
                                 <legend className="text-center">Password</legend>
                                 <div className="flex items-center">
                                     <input {...register('password')} type={showPassword ? "text" : "password"} className="md:text-lg lg:text-xl  p-2 w-full focus:outline-none bg-inherit" placeholder="Password" />
