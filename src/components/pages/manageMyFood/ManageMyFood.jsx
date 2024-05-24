@@ -23,7 +23,6 @@ const ManageMyFood = () => {
             return res.data;
         }
     })
-    console.log(food)
     const [foodData, setFoodData] = useState(food);
 
     if (isPending)
@@ -49,21 +48,19 @@ const ManageMyFood = () => {
         const pickupLocation = data.pickupLocation;
         const expiryDateTime = data.expireDate;
         const additionalNotes = data.note;
-        const donatorId = user.uid;
-        const donatorImage = user.photoURL;
-        const donatorName = user.displayName;
-        const donatorEmail = user.email;
+        const donatorId = selectedData.donatorId;
+        const donatorImage = selectedData.donatorImage;
+        const donatorName = selectedData.donatorName;
+        const donatorEmail = selectedData.donatorEmail;
         const foodStatus = data.status;
 
-        const insertedData = { foodName, foodImage, foodQuantity, pickupLocation, expiryDateTime, additionalNotes, donatorId, donatorImage, donatorName, donatorEmail, foodStatus }
+        const updatedData = { foodName, foodImage, foodQuantity, pickupLocation, expiryDateTime, additionalNotes, donatorId, donatorImage, donatorName, donatorEmail, foodStatus }
 
-        axios.put('http://localhost:3000/foodRequest', insertedData)
+        axios.put(`http://localhost:3000/updateFood/${selectedData._id}`, updatedData)
             .then(res => {
-                if (res.data.insertedId) {
-                    document.getElementById('my_modal_3').close()
+                if (res.data.modifiedCount === 1) {
+                    document.getElementById('my_modal_3').close();
                     toast.success('Request Successful');
-                    const foodStatus = { foodStatus: "unavailable" }
-                    axios.patch(`http://localhost:3000/food/updateStatus/${selectedData._id}`, foodStatus);
                     navigate('/myFoodRequest');
                 }
             })
@@ -132,7 +129,7 @@ const ManageMyFood = () => {
                                 <th>{Food?.donatorName}</th>
                                 <th>{Food?.pickupLocation}</th>
                                 <th>{Food?.expiryDateTime}</th>
-                                <th><button onClick={() => updateData(Food)} className="btn w-full md:w-auto bg-primary mr-4 font-montserrat text-white" >Update</button><button className="btn w-full md:w-auto bg-primary font-montserrat text-white" onClick={() => handleDelete(Food?._id)}>Delete</button></th>
+                                <th><button onClick={() => updateData(Food)} className="btn w-full md:w-auto bg-primary mr-4 font-montserrat text-white hover:bg-primary" >Update</button><button className="btn w-full md:w-auto bg-primary font-montserrat text-white hover:bg-primary" onClick={() => handleDelete(Food?._id)}>Delete</button></th>
                             </tr>)
                         }
                     </tbody>
@@ -195,7 +192,7 @@ const ManageMyFood = () => {
                             </fieldset>
                         </div>
                         <div className="flex justify-center">
-                            <input type="submit" value="Add Food" className="btn btn-primary text-lg font-montserrat" />
+                            <input type="submit" value="Update Food" className="btn btn-primary text-lg font-montserrat" />
                         </div>
                     </div>
                     </form>
