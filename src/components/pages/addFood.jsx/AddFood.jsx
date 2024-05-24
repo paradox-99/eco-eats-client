@@ -70,7 +70,6 @@ const AddFood = () => {
                                 <legend className="ml-4">Additional Note</legend>
                                 <input {...register('note')} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" placeholder="Additional notes" />
                             </fieldset>
-
                         </div>
                         <div className="flex justify-center gap-7">
                             <fieldset className="border-2 border-primary rounded w-80">
