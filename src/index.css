@@ -15,7 +15,8 @@ p{
 
 .menu li > *:not(ul, .menu-title, details, .btn).active {
     background-color:transparent;
-    border: 1.5px solid #ff421c7b;
+    border-bottom: 3px solid #ff421c7b;
+    border-radius: 0px;
     color:unset;
 }
 .menu li > *:not(ul, .menu-title, details, .btn).active:hover {

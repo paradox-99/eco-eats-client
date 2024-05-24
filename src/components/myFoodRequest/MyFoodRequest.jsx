@@ -1,18 +1,33 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProv";
+import { useQuery } from "@tanstack/react-query";
+import { Bars } from "react-loader-spinner";
 
 const MyFoodRequest = () => {
 
-    const {user} = useContext(AuthContext);
-    const [foodData, setFoodData] = useState();
+    const { user } = useContext(AuthContext);
 
-    useEffect(() => {
-        axios.get(`http://localhost:3000/userRequestedFood/${user.uid}`)
-        .then(res => {
-            setFoodData(res.data);
-        })
-    },[])
+    const { isPending, isError, error, data: foodData } = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+            const res = await axios.get(`http://localhost:3000/userRequestedFood/${user.uid}`)
+            return res.data;
+        }
+    })
+    if (isPending)
+        return <div className="flex items-center justify-center w-full h-[600px]"><Bars
+            height="80"
+            width="80"
+            color="#4fa94d"
+            ariaLabel="bars-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+        /></div>
+
+    if(isError)
+         return <p>{error.message}</p>
 
     return (
         <div>
@@ -23,7 +38,7 @@ const MyFoodRequest = () => {
                         <tr className="text-lg font-montserrat text-heading">
                             <th>Photo</th>
                             <th>Food Name</th>
-                            <th>Donar Name</th> 
+                            <th>Donar Name</th>
                             <th>Pickup Location</th>
                             <th>Expire Date</th>
                             <th>Request Date</th>
@@ -40,7 +55,7 @@ const MyFoodRequest = () => {
                                 <th>{food.expireDate}</th>
                                 <th>{food.requestDate}</th>
                                 <th>{food.requestTime}</th>
-                                
+
                             </tr>)
                         }
                     </tbody>

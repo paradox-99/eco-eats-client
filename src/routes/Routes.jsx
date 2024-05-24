@@ -10,11 +10,13 @@ import Signin from "../components/pages/access/Signin";
 import Signup from "../components/pages/access/Signup";
 import PrivateRoute from "../private/PrivateRoute";
 import ViewDetails from "../components/shared/ViewDetails";
+import ErrorPage from "../ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <RootPage></RootPage>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',

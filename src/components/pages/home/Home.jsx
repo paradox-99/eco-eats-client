@@ -4,16 +4,31 @@ import img2 from '../../../assets/thumb.jpg'
 import FeaturedFoods from "./FeaturedFoods";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { Bars } from "react-loader-spinner";
 
 const Home = () => {
 
-    const { data: foods } = useQuery({
+    const { isPending, isError, error, data: foods } = useQuery({
         queryKey: ['foods'],
         queryFn: async () => {
             const res = await axios.get('http://localhost:3000/foods-home');
             return res.data;
         }
     })
+
+    if (isPending)
+        return <Bars
+            height="80"
+            width="80"
+            color="#4fa94d"
+            ariaLabel="bars-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+        />
+    
+    if(isError) 
+         return <p>{error.message}</p>
 
     return (
         <div>
