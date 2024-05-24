@@ -103,7 +103,7 @@ const Signin = () => {
     };
 
     const handleUserInDatabase = (user, loginMethod) => {
-        fetch(`https://trip-tastic-server.vercel.app/findUser/${user.uid}`)
+        fetch(``)
             .then(result => result.json())
             .then(datas => {
                 if (datas === false) {
@@ -119,7 +119,7 @@ const Signin = () => {
                         lastSignInTime: user.metadata.lastSignInTime,
                         loginMethod: loginMethod
                     }
-                    fetch('https://trip-tastic-server.vercel.app/users', {
+                    fetch('', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -135,7 +135,7 @@ const Signin = () => {
                     const updateData = {
                         lastSignInTime: user.metadata.lastSignInTime
                     }
-                    fetch(`https://trip-tastic-server.vercel.app/updateUser/${user.uid}`, {
+                    fetch(``, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json'
@@ -194,7 +194,7 @@ const Signin = () => {
 
                             <Link className="text-lg text-center underline">Forgotten password</Link>
                             <label className="input input-bordered border-primary flex items-center gap-2">
-                                <input type="submit" className="grow md:text-lg lg:text-xl font-semibold hover:cursor-pointer focus:outline-none" value={isSubmitting ? "Loading..." : "Submit"} />
+                                <input type="submit" className="grow md:text-lg lg:text-xl font-semibold hover:cursor-pointer focus:outline-none" defaultValue={isSubmitting ? "Loading..." : "Submit"} />
                             </label>
                         </form>
                         <p className="text-lg text-center font-mono my-3">Don`t have an account. <Link className=" text-blue-500 underline" to={"/signup"}>Create new</Link> </p>

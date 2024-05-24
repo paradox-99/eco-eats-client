@@ -27,7 +27,7 @@ const Signup = () => {
 
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({ resolver: zodResolver(schema) });
 
@@ -40,9 +40,6 @@ const Signup = () => {
         const password = data.password;
         const terms = data.terms;
         let URL = '';
-
-        console.log('url: ', url)
-        console.log('url tpe: ', typeof (url))
 
         if (url === '')
             URL = 'https://i.ibb.co/DDccd18/cowboy-6543190.png'
@@ -135,7 +132,7 @@ const Signup = () => {
                             </label>
                             {errors.conditions && (<p className="text-red-500">{errors.conditions.message}</p>)}
                             <label className="input input-bordered border-primary flex items-center gap-2">
-                                <input type="submit" className="grow md:text-lg lg:text-xl font-semibold hover:cursor-pointer" value={isSubmitting ? "Loading..." : "Submit"} />
+                                <input type="submit" className="grow md:text-lg lg:text-xl font-semibold hover:cursor-pointer" defaultValue={isSubmitting ? "Loading..." : "Submit"} />
                             </label>
                         </form>
                         <p className="text-lg text-center font-mono my-3">Already have an account. <Link className=" text-blue-500 underline" to={"/signin"}>Sign in</Link> </p>
