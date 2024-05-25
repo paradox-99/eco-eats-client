@@ -2,6 +2,13 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const FeaturedFoods = ({ food }) => {
+
+    const {expiryDateTime} = food;
+
+    const dateAndTime = new Date(expiryDateTime);
+    const date = dateAndTime.toLocaleDateString();
+    const time = dateAndTime.toLocaleTimeString();
+
     return (
         <div>
             <div className="card card-compact rounded-md max-w-[400px] bg-primary text-white shadow-xl">
@@ -14,7 +21,8 @@ const FeaturedFoods = ({ food }) => {
                     <h2 className="card-title text-xl font-semibold">{food.foodName}</h2>
                     <p className='text-lg'><span className='font-semibold'>Quantity:</span> {food.foodQuantity} person</p>
                     <p className='text-lg'><span className='font-semibold'>Pickup Location</span>: {food.pickupLocation}</p>
-                    <p className='text-lg'><span className='font-semibold'>Expired:</span> {food.expiryDateTime}</p>
+                    <p className='text-lg'><span className='font-semibold'>Expiry date:</span> {date}</p>
+                    <p className='text-lg'><span className='font-semibold'>Expiry Time:</span> {time}</p>
                     <div className="card-actions justify-end">
                         <Link to={`/food/${food._id}`} className="btn font-montserrat text-base">Details</Link>
                     </div>

@@ -13,6 +13,12 @@ const ViewDetails = () => {
     const [time, setTime] = useState([]);
     const [date, setDate] = useState([]);
     const navigate = useNavigate();
+
+    const {expiryDateTime} = food;
+
+    const DateAndTime = new Date(expiryDateTime);
+    const DAte = DateAndTime.toLocaleDateString();
+    const Time = DateAndTime.toLocaleTimeString();
     
     const { register, handleSubmit } = useForm();
 
@@ -60,12 +66,13 @@ const ViewDetails = () => {
             <div>
                 <h1 className="font-pirata text-3xl md:text-4xl lg:text-5xl mt-20 mb-5">{food.foodName}</h1>
                 <h4 className="font-montserrat md:text-lg"><span className="text-lg md:text-xl font-semibold"> Quantity:</span> {food.foodQuantity} person</h4>
-                <h4 className="font-montserrat md:text-lg mt-2"><span className="text-lg md:text-xl font-semibold">Expired at: </span> {food.expiryDateTime}</h4>
+                <h4 className="font-montserrat md:text-lg mt-2"><span className="text-lg md:text-xl font-semibold">Expired date: </span> {DAte}</h4>
+                <h4 className="font-montserrat md:text-lg mt-2"><span className="text-lg md:text-xl font-semibold">Expired time: </span> {Time}</h4>
             </div>
             <div className="mt-10">
-                <img src={food.foodImage} alt={food.foodName} className="w-full lg:h-[650px]" />
+                <img src={food.foodImage} alt={food.foodName} className="w-full rounded-lg lg:h-[650px]" />
                 <div className="flex justify-end">
-                    <button onClick={()=> setDateAndTime()} className="btn btn-primary mt-5 font-montserrat btn-sm mg:btn md:text-lg lg:text-xl">Request Food</button>
+                    <button onClick={()=> setDateAndTime()} className="btn btn-primary mt-5 font-montserrat btn-sm md:btn md:text-lg lg:text-xl">Request Food</button>
                 </div>
             </div>
             <dialog id="my_modal_3" className="modal">

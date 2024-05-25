@@ -17,7 +17,7 @@ const Home = () => {
     })
 
     if (isPending)
-        return <Bars
+        return <div className="flex items-center justify-center w-full h-[600px]"><Bars
             height="80"
             width="80"
             color="#4fa94d"
@@ -25,7 +25,7 @@ const Home = () => {
             wrapperStyle={{}}
             wrapperClass=""
             visible={true}
-        />
+        /></div>
     
     if(isError) 
          return <p>{error.message}</p>

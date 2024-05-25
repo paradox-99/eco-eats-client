@@ -9,7 +9,7 @@ const AvalibleFoods = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [foodItems, setFoodItems] = useState([]);
     const [search, setSearch] = useState("");
-    const [sortValue, setSortValue] = useState(0);
+    const [sortValue, setSortValue] = useState("0");
 
     useEffect(() => {
         axios.get('http://localhost:3000/foodsCount')
@@ -19,7 +19,7 @@ const AvalibleFoods = () => {
     }, [])
 
     useEffect(() => {
-        fetch(`http://localhost:3000/foodsPerPage?page=${currentPage}&size=${itemPerPage}&sortvalue=${sortValue}`)
+        fetch(`http://localhost:3000/foodsPerPage?page=${currentPage}&size=${itemPerPage}&sortValue=${sortValue}`)
             .then(res => res.json())
             .then(data => setFoodItems(data))
     }, [currentPage, itemPerPage, sortValue]);
@@ -51,11 +51,8 @@ const AvalibleFoods = () => {
 
     const sortValues = e => {
         let value = e.target.value;
-        value = parseInt(value)
         setSortValue(value);
     }
-
-    console.log(sortValue);
 
     const searchFood = () => {
         if (search.length > 0) {
@@ -107,7 +104,7 @@ const AvalibleFoods = () => {
                                 className={`btn rounded-full font-montserrat text-sm md:text-base ${currentPage === page ? 'btn-primary ' : undefined}`}
                                 onClick={() => setCurrentPage(page)}
                                 key={page}
-                            >{page}</button>)
+                            >{page+1}</button>)
                     }
                 </div>
                 <button onClick={handleNextPage} className="btn rounded-full hover:bg-primary text-sm md:text-base w-fit hidden md:flex">Next</button>
