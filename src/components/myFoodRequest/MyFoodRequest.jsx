@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProv";
 import { useQuery } from "@tanstack/react-query";
 import { Bars } from "react-loader-spinner";
+import { Helmet } from "react-helmet-async";
 
 const MyFoodRequest = () => {
 
@@ -31,6 +32,9 @@ const MyFoodRequest = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>EcoEats || My Food Request</title>
+            </Helmet>
             <div className="overflow-x-auto lg:px-16 mt-10 md:mt-14 lg:mt-20 xl:mt-[100px]">
                 <table className="table">
                     {/* head */}

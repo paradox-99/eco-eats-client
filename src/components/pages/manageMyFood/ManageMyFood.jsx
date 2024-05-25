@@ -1,12 +1,11 @@
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../provider/AuthProv";
-import { useQuery } from "@tanstack/react-query";
-import { Bars } from "react-loader-spinner";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const ManageMyFood = () => {
 
@@ -15,29 +14,14 @@ const ManageMyFood = () => {
     const navigate = useNavigate();
 
     const { register, handleSubmit } = useForm();
+    const [foodData, setFoodData] = useState([]);
 
-    const { isPending, isError, error, data: food } = useQuery({
-        queryKey: ['foods'],
-        queryFn: async () => {
-            const res = await axios.get(`http://localhost:3000/manageUserFood/${user.uid}`)
-            return res.data;
-        }
-    })
-    const [foodData, setFoodData] = useState(food);
-
-    if (isPending)
-        return <div className="flex items-center justify-center w-full h-[600px]"><Bars
-            height="80"
-            width="80"
-            color="#4fa94d"
-            ariaLabel="bars-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
-            visible={true}
-        /></div>
-
-    if (isError)
-        return <p>{error.message}</p>
+    useEffect(() => {
+        axios.get(`http://localhost:3000/manageUserFood/${user.uid}`)
+        .then(res => {
+            setFoodData(res.data)
+        })
+    },[])
 
     const onSubmit = async (data) => {
         await new Promise(resolve => setTimeout(() => resolve(), 1000));
@@ -102,12 +86,14 @@ const ManageMyFood = () => {
 
     const updateData = (selected) => {
         setSelectedData(selected)
-        console.log(selected)
         document.getElementById('my_modal_3').showModal();
     }
 
     return (
         <div>
+            <Helmet>
+                <title>EcoEats || Manage My Foods</title>
+            </Helmet>
             <div className="overflow-x-auto lg:px-16 mt-10 md:mt-14 lg:mt-20 xl:mt-[100px]">
                 <table className="table">
                     {/* head */}

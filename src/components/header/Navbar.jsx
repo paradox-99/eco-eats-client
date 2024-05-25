@@ -14,8 +14,6 @@ const Navbar = () => {
         document.querySelector('html').setAttribute('data-theme', theme);
     }, [theme]);
 
-    // console.log(user)
-
     const routes = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
         <li><NavLink to={'/availableFoods'}>Available Foods</NavLink></li>
@@ -45,7 +43,7 @@ const Navbar = () => {
                             </label></div>
                         </ul>
                     </div>
-                    <a className="btn pl-0 btn-ghost text-primary text-5xl font-pirata hover:bg-inherit">EcoEats</a>
+                    <a href="/" className="btn pl-0 btn-ghost text-primary text-5xl font-pirata hover:bg-inherit">EcoEats</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 font-manrope lg:text-lg xl:text-xl">

@@ -51,7 +51,6 @@ const Signup = () => {
             return;
         }
 
-        console.log('url: ', URL)
         handleCreateUser(email, password)
             .then(res => {
                 updateProfile(res.user, { displayName: name, photoURL: URL })

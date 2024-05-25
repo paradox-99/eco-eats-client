@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../provider/AuthProv";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const AddFood = () => {
 
@@ -33,6 +34,9 @@ const AddFood = () => {
 
     return (
         <div className="my-14">
+            <Helmet>
+                <title>EcoEats || Add Food</title>
+            </Helmet>
             <div className="text-center ">
                 <h1 className="font-pirata text-5xl">Add new Food</h1>
                 <p className="text-2xl mt-4">Use this form to add a new food item to our community platform.</p>
