@@ -115,7 +115,7 @@ const ManageMyFood = () => {
                                 <th>{Food?.donatorName}</th>
                                 <th>{Food?.pickupLocation}</th>
                                 <th>{Food?.expiryDateTime}</th>
-                                <th><button onClick={() => updateData(Food)} className="btn w-full md:w-auto bg-primary mr-4 font-montserrat text-white hover:bg-primary" >Update</button><button className="btn w-full md:w-auto bg-primary font-montserrat text-white hover:bg-primary" onClick={() => handleDelete(Food?._id)}>Delete</button></th>
+                                <th className="space-y-2"><button onClick={() => updateData(Food)} className="btn w-full bg-primary mr-4 font-montserrat btn-primary md:text-white text-white hover:bg-primary btn-sm md:btn" >Update</button><button className="btn w-full btn-primary md:text-white font-montserrat text-white hover:bg-primary btn-sm md:btn" onClick={() => handleDelete(Food?._id)}>Delete</button></th>
                             </tr>)
                         }
                     </tbody>
@@ -126,7 +126,7 @@ const ManageMyFood = () => {
                     <h3 className="font-bold text-2xl py-4 text-center">Food Request</h3>
                     <form method="dialog" onSubmit={handleSubmit(onSubmit)}>
                     <div className="grid grid-cols-1 lg:grid-rows-6 gap-4">
-                        <div className="flex justify-center gap-7">
+                        <div className="flex flex-wrap justify-center gap-7">
                             <fieldset className="border-2 border-primary rounded w-80">
                                 <legend className="ml-4">Food Name</legend>
                                 <input {...register('foodName', { required: "Food name is required" })} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" placeholder="Food name" defaultValue = {selectedData?.foodName}/>
@@ -136,7 +136,7 @@ const ManageMyFood = () => {
                                 <input {...register('foodURL', { required: "Food Photo URL is required" })} type="url" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" placeholder="Food Photo URL" defaultValue = {selectedData?.foodImage}/>
                             </fieldset>
                         </div>
-                        <div className="flex justify-center gap-7">
+                        <div className="flex flex-wrap justify-center gap-7">
                             <fieldset className="border-2 border-primary rounded w-80">
                                 <legend className="ml-4">Food Quantity</legend>
                                 <input {...register('foodQuantity', { required: "Food quantity is required" })} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" placeholder="Food Quantity" defaultValue = {selectedData?.foodQuantity}/>
@@ -147,7 +147,7 @@ const ManageMyFood = () => {
                             </fieldset>
 
                         </div>
-                        <div className="flex justify-center gap-7">
+                        <div className="flex flex-wrap justify-center gap-7">
                             <fieldset className="border-2 border-primary rounded w-80">
                                 <legend className="ml-4">Expire Date</legend>
                                 <input {...register('expireDate', { required: "Expire date and time is required" })} type="datetime-local" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" placeholder="Expire Date" defaultValue = {selectedData?.expiryDateTime}/>
@@ -157,7 +157,7 @@ const ManageMyFood = () => {
                                 <input {...register('note')} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" placeholder="Additional notes" defaultValue = {selectedData?.additionalNotes}/>
                             </fieldset>
                         </div>
-                        <div className="flex justify-center gap-7">
+                        <div className="flex flex-wrap justify-center gap-7">
                             <fieldset className="border-2 border-primary rounded w-80">
                                 <legend className="ml-4">Status</legend>
                                 <input {...register('status', { required: "Food status is required" })} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" placeholder="Available or not"  defaultValue = {selectedData?.foodStatus}/>
@@ -167,7 +167,7 @@ const ManageMyFood = () => {
                                 <input {...register('donatorName')} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" disabled defaultValue={selectedData?.donatorName} required />
                             </fieldset>
                         </div>
-                        <div className="flex justify-center gap-7">
+                        <div className="flex flex-wrap justify-center gap-7">
                             <fieldset className="border-2 border-primary rounded w-80">
                                 <legend className="ml-4">Donar Email</legend>
                                 <input  {...register('donatorEmail')} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" required disabled defaultValue={selectedData?.donatorEmail} />
@@ -178,7 +178,7 @@ const ManageMyFood = () => {
                             </fieldset>
                         </div>
                         <div className="flex justify-center">
-                            <input type="submit" value="Update Food" className="btn btn-primary text-lg font-montserrat" />
+                            <input type="submit" value="Update Food" className="btn btn-primary md:text-lg font-montserrat btn-sm md:btn text-white md:text-white" />
                         </div>
                     </div>
                     </form>

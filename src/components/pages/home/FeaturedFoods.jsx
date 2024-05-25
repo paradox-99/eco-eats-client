@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 const FeaturedFoods = ({ food }) => {
     return (
         <div>
-            <div className="card card-compact rounded-md w-[400px] bg-primary text-white shadow-xl">
+            <div className="card card-compact rounded-md max-w-[400px] bg-primary text-white shadow-xl">
                 <div className='px-2 pb-2 pt-3 flex justify-between items-center text-lg font-semibold'>
                     <img src={food.donatorImage} alt={food.donatorName}  className='w-12 h-12 rounded-full'/>
                     <p>{food.donatorName}</p>
                 </div>
-                <figure><img src={food.foodImage} alt={food.foodName} className='h-[267px]'/></figure>
+                <figure><img src={food.foodImage} alt={food.foodName} className='md:h-[267px]'/></figure>
                 <div className="card-body">
                     <h2 className="card-title text-xl font-semibold">{food.foodName}</h2>
                     <p className='text-lg'><span className='font-semibold'>Quantity:</span> {food.foodQuantity} person</p>

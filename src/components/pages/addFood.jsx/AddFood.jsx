@@ -44,7 +44,7 @@ const AddFood = () => {
             <div className="mt-10">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="grid grid-cols-1 lg:grid-rows-6 gap-4">
-                        <div className="flex justify-center gap-7">
+                        <div className="flex flex-wrap justify-center gap-7">
                             <fieldset className="border-2 border-primary rounded w-80">
                                 <legend className="ml-4">Food Name</legend>
                                 <input {...register('foodName', { required: "Food name is required" })} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" placeholder="Food name" />
@@ -54,7 +54,7 @@ const AddFood = () => {
                                 <input {...register('foodURL', { required: "Food Photo URL is required" })} type="url" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" placeholder="Food Photo URL" />
                             </fieldset>
                         </div>
-                        <div className="flex justify-center gap-7">
+                        <div className="flex flex-wrap justify-center gap-7">
                             <fieldset className="border-2 border-primary rounded w-80">
                                 <legend className="ml-4">Food Quantity</legend>
                                 <input {...register('foodQuantity', { required: "Food quantity is required" })} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" placeholder="Food Quantity" />
@@ -65,7 +65,7 @@ const AddFood = () => {
                             </fieldset>
 
                         </div>
-                        <div className="flex justify-center gap-7">
+                        <div className="flex flex-wrap justify-center gap-7">
                             <fieldset className="border-2 border-primary rounded w-80">
                                 <legend className="ml-4">Expire Date</legend>
                                 <input {...register('expireDate', { required: "Expire date and time is required" })} type="datetime-local" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" placeholder="Expire Date" />
@@ -75,7 +75,7 @@ const AddFood = () => {
                                 <input {...register('note')} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" placeholder="Additional notes" />
                             </fieldset>
                         </div>
-                        <div className="flex justify-center gap-7">
+                        <div className="flex flex-wrap justify-center gap-7">
                             <fieldset className="border-2 border-primary rounded w-80">
                                 <legend className="ml-4">Status</legend>
                                 <input {...register('status', { required: "Food status is required" })} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" placeholder="Available or not" defaultValue="Available" />
@@ -85,7 +85,7 @@ const AddFood = () => {
                                 <input {...register('donatorName')} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" disabled defaultValue={user.displayName} required />
                             </fieldset>
                         </div>
-                        <div className="flex justify-center gap-7">
+                        <div className="flex flex-wrap justify-center gap-7">
                             <fieldset className="border-2 border-primary rounded w-80">
                                 <legend className="ml-4">Donar Email</legend>
                                 <input  {...register('donatorEmail')} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" required disabled defaultValue={user.email} />
@@ -105,7 +105,7 @@ const AddFood = () => {
                         }
 
                         <div className="flex justify-center">
-                            <input type="submit" value="Add Food" className="btn btn-primary text-lg font-montserrat" />
+                            <input type="submit" value="Add Food" className="btn btn-sm md:btn text-white md:text-white btn-primary md:flex-wraptext-lg font-montserrat" />
                         </div>
                     </div>
                 </form>

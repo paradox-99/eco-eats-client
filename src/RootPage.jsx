@@ -3,7 +3,7 @@ import Navbar from "./components/header/Navbar";
 
 const RootPage = () => {
     return (
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-2 lg:mx-auto">
             <Navbar></Navbar>
             <Outlet></Outlet>
         </div>

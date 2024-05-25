@@ -34,7 +34,7 @@ const Navbar = () => {
                         <div tabIndex={0} role="button" className="btn pl-0 btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 rounded-box w-52 font-manrope">
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-10 bg-primary p-2 rounded-box w-52 font-montserrat">
                             {routes}
                             <div className="flex mt-2 ml-[6px]"><label className="cursor-pointer grid md:hidden place-items-center ml-2">
                                 <input type="checkbox" defaultValue="synthwave" onClick={toggleTheme} className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2" />
