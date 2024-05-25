@@ -13,19 +13,6 @@
       "foodStatus": "available"
     },
     {
-      "foodName": "BBQ Chicken Wings",
-      "foodImage": "https://example.com/images/bbq_chicken_wings.jpg",
-      "foodQuantity": 15,
-      "pickupLocation": "707 Cedar St, Springfield",
-      "expiryDateTime": "2024-05-29T17:00:00Z",
-      "additionalNotes": "Spicy and tangy.",
-      "donatorId": "D012",
-      "donatorImage": "https://example.com/images/donator12.jpg",
-      "donatorName": "John Doe",
-      "donatorEmail": "john@example.com",
-      "foodStatus": "available"
-    },
-    {
       "foodName": "Greek Salad",
       "foodImage": "https://example.com/images/greek_salad.jpg",
       "foodQuantity": 10,
