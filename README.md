@@ -16,6 +16,7 @@
 - Google, gitHub login
 - Firebase authentication and hosting
 - api authentication with jwt
+- pagination in available foods page
 
 React tools: 
 - react framer-motion
