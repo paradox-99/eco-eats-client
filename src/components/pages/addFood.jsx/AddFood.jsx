@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet-async";
 const AddFood = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
 
     const onSubmit = async (data) => {
         const foodName = data.foodName;
@@ -25,20 +25,24 @@ const AddFood = () => {
 
         const insertedData = { foodName, foodImage, foodQuantity, pickupLocation, expiryDateTime, additionalNotes, donatorId, donatorImage, donatorName, donatorEmail, foodStatus }
 
-        axios.post('http://localhost:3000/addNewFood', insertedData)
+        axios.post('http://localhost:3000/addNewFood', insertedData, {withCredentials: true})
         .then(res => {
             if(res.data.insertedId)
                 toast.success('Food added successfully.')
         })
+        .catch(err => {
+            if(err.response.status === 401 || err.response.status === 403 )
+                logOut();
+        })
     }
 
     return (
-        <div className="my-14">
+        <div className="my-10">
             <Helmet>
                 <title>EcoEats || Add Food</title>
             </Helmet>
             <div className="text-center ">
-                <h1 className="font-pirata text-5xl">Add new Food</h1>
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-10 text-center">Add new Food</h1>
                 <p className="text-2xl mt-4">Use this form to add a new food item to our community platform.</p>
             </div>
             <div className="mt-10">

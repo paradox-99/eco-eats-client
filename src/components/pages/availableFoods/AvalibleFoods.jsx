@@ -65,7 +65,7 @@ const AvalibleFoods = () => {
     }
 
     return (
-        <div className="mt-14">
+        <div className="mt-10">
             <Helmet>
                 <title>EcoEats || Available Foods</title>
             </Helmet>

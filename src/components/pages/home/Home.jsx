@@ -5,6 +5,13 @@ import FeaturedFoods from "./FeaturedFoods";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Bars } from "react-loader-spinner";
+import { Link } from "react-router-dom";
+import { Autoplay, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { ImQuotesLeft } from "react-icons/im";
+import './styles.css'
 
 const Home = () => {
 
@@ -26,9 +33,9 @@ const Home = () => {
             wrapperClass=""
             visible={true}
         /></div>
-    
-    if(isError) 
-         return <p>{error.message}</p>
+
+    if (isError)
+        return <p>{error.message}</p>
 
     return (
         <div>
@@ -61,6 +68,54 @@ const Home = () => {
                             food={food}
                         ></FeaturedFoods>)
                     }
+                </div>
+                <div className="mt-10 flex justify-center">
+                    <Link to="/availableFoods"><button className="btn btn-primary font-montserrat text-lg text-white">See All Foods</button></Link>
+                </div>
+            </div>
+            <div className="bg-base-200 py-16">
+                <h1 className="font-pirata text-3xl md:text-4xl lg:text-5xl xl:text-7xl text-center">Testimonials</h1>
+                <div>
+                    <Swiper
+                        pagination={{
+                            dynamicBullets: true,
+                          }}
+                        autoplay={{
+                            delay: 2500,
+                            disableOnInteraction: false,
+                        }}
+                        loop={true}
+                        modules={[Autoplay, Pagination]}
+                        className="">
+                        <SwiperSlide>
+                            <div className="flex flex-col justify-center items-center w-full mt-8">
+                                <ImQuotesLeft className="text-3xl md:text-4xl lg:text-5xl"/>
+                                <h3 className="text-2xl mt-4 mb-3 font-semibold">Alice Johnson</h3>
+                                <p className="text-lg text-center">As a restaurant owner, this platform allows me to donate leftover food easily. <br /> It's great to know that the food is going to people who really need it.</p>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div className="flex flex-col justify-center items-center w-full mt-8">
+                                <ImQuotesLeft className="text-3xl md:text-4xl lg:text-5xl"/>
+                                <h3 className="text-2xl mt-4 mb-3 font-semibold">Sophia Martinez</h3>
+                                <p className="text-lg text-center">This platform is fantastic! It's heartwarming to see how surplus food can be <br /> redirected to help those in need. Highly recommend it to everyone.</p>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div className="flex flex-col justify-center items-center w-full mt-8">
+                                <ImQuotesLeft className="text-3xl md:text-4xl lg:text-5xl"/>
+                                <h3 className="text-2xl mt-4 mb-3 font-semibold">Sophia Martinez</h3>
+                                <p className="text-lg text-center">I've shared and received food through this platform, and the experience has <br /> been amazing every time.  It's a wonderful initiative that truly makes a difference.</p>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div className="flex flex-col justify-center items-center w-full mt-8">
+                                <ImQuotesLeft className="text-3xl md:text-4xl lg:text-5xl"/>
+                                <h3 className="text-2xl mt-4 mb-3 font-semibold">Olivia Lee</h3>
+                                <p className="text-lg text-center">This platform has made it so easy to connect with others and share food <br /> that would otherwise go to waste. It's a brilliant idea that's making a real impact.</p>
+                            </div>
+                        </SwiperSlide>
+                    </Swiper>
                 </div>
             </div>
         </div>

@@ -46,7 +46,7 @@ const Navbar = () => {
                     <a href="/" className="btn pl-0 btn-ghost text-primary text-5xl font-pirata hover:bg-inherit">EcoEats</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1 font-manrope lg:text-lg xl:text-xl">
+                    <ul className="menu menu-horizontal px-1 font-manrope lg:text-base xl:text-xl">
                         {routes}
                     </ul>
                 </div>

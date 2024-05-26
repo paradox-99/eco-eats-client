@@ -15,11 +15,10 @@ const Banner = () => {
         navigation={true}
         autoplay={{
           delay: 2500,
-          disableOnInteraction: true,
+          disableOnInteraction: false,
         }}
         loop={true}
-        modules={[Autoplay, Navigation]}
-        className="mySwiper">
+        modules={[Autoplay, Navigation]}>
         <SwiperSlide className='relative'>
           <div className='absolute flex flex-col justify-center items-center w-full h-full'>
             <h1 className='text-2xl md:text-4xl lg:text-5xl text-center font-bold text-primary'>Share Your Surplus</h1>

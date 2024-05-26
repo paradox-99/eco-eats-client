@@ -7,12 +7,16 @@ import { Helmet } from "react-helmet-async";
 
 const MyFoodRequest = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
 
     const { isPending, isError, error, data: foodData } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:3000/userRequestedFood/${user.uid}`)
+            const res = await axios.get(`http://localhost:3000/userRequestedFood/${user.uid}`, {withCredentials: true})
+            .catch(err => {
+                if(err.response.status === 401 || err.response.status === 403 )
+                    logOut();
+            })
             return res.data;
         }
     })
@@ -35,7 +39,8 @@ const MyFoodRequest = () => {
             <Helmet>
                 <title>EcoEats || My Food Request</title>
             </Helmet>
-            <div className="overflow-x-auto lg:px-16 mt-10 md:mt-14 lg:mt-20 xl:mt-[100px]">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-10 text-center">Food requested by me</h1>
+            <div className="overflow-x-auto lg:px-16 mt-4 md:mt-6 lg:mt-9 xl:mt-12">
                 <table className="table">
                     {/* head */}
                     <thead>

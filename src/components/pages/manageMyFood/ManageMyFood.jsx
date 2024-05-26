@@ -9,7 +9,7 @@ import { Helmet } from "react-helmet-async";
 
 const ManageMyFood = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const [selectedData, setSelectedData] = useState();
     const navigate = useNavigate();
 
@@ -17,9 +17,13 @@ const ManageMyFood = () => {
     const [foodData, setFoodData] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/manageUserFood/${user.uid}`)
+        axios.get(`http://localhost:3000/manageUserFood/${user.uid}`, {withCredentials: true})
         .then(res => {
             setFoodData(res.data)
+        })
+        .catch(err => {
+            if(err.response.status === 401 || err.response.status === 403 )
+                logOut();
         })
     },[])
 
@@ -40,13 +44,17 @@ const ManageMyFood = () => {
 
         const updatedData = { foodName, foodImage, foodQuantity, pickupLocation, expiryDateTime, additionalNotes, donatorId, donatorImage, donatorName, donatorEmail, foodStatus }
 
-        axios.put(`http://localhost:3000/updateFood/${selectedData._id}`, updatedData)
+        axios.put(`http://localhost:3000/updateFood/${selectedData._id}`, updatedData, {withCredentials: true})
             .then(res => {
                 if (res.data.modifiedCount === 1) {
                     document.getElementById('my_modal_3').close();
                     toast.success('Request Successful');
                     navigate('/myFoodRequest');
                 }
+            })
+            .catch(err => {
+                if(err.response.status === 401 || err.response.status === 403 )
+                    logOut();
             })
     }
 
@@ -61,7 +69,7 @@ const ManageMyFood = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:3000/deleteFood/${id}`)
+                axios.delete(`http://localhost:3000/deleteFood/${id}`, {withCredentials: true})
                     .then(data => {
                         if (data.data.deletedCount === 1) {
                             const remaining = foodData.filter(spot => spot._id !== id);
@@ -80,6 +88,10 @@ const ManageMyFood = () => {
                             });
                         }
                     })
+                    .catch(err => {
+                        if(err.response.status === 401 || err.response.status === 403 )
+                            logOut();
+                    })
             }
         });
     }
@@ -94,7 +106,10 @@ const ManageMyFood = () => {
             <Helmet>
                 <title>EcoEats || Manage My Foods</title>
             </Helmet>
-            <div className="overflow-x-auto lg:px-16 mt-10 md:mt-14 lg:mt-20 xl:mt-[100px]">
+            <div>
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-10 text-center">Foods added by you</h1>
+            </div>
+            <div className="overflow-x-auto lg:px-16 mt-4 md:mt-6 lg:mt-9 xl:mt-12">
                 <table className="table">
                     {/* head */}
                     <thead>

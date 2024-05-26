@@ -5,11 +5,11 @@ import Footer from "./components/shared/Footer";
 const RootPage = () => {
     return (
         <div>
-            <div className="max-w-7xl mx-2 lg:mx-auto">
+            <div className="max-w-7xl mx-2 lg:mx-5 xl:mx-auto">
                 <Navbar></Navbar>
                 <Outlet></Outlet>
             </div>
-                <Footer></Footer>
+            <Footer></Footer>
         </div>
     );
 };

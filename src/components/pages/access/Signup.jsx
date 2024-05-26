@@ -73,7 +73,7 @@ const Signup = () => {
 
     const handleAlert = async () => {
         await showSweetAlert();
-        navigate('/sign-in');
+        navigate('/signin');
     };
 
     return (

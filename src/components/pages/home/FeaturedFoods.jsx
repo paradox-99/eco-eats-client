@@ -11,7 +11,7 @@ const FeaturedFoods = ({ food }) => {
 
     return (
         <div>
-            <div className="card card-compact rounded-md max-w-[400px] bg-primary text-white shadow-xl">
+            <div className="card card-compact rounded-md h-full max-w-[400px] bg-primary text-white shadow-xl">
                 <div className='px-2 pb-2 pt-3 flex justify-between items-center text-lg font-semibold'>
                     <img src={food.donatorImage} alt={food.donatorName}  className='w-12 h-12 rounded-full'/>
                     <p>{food.donatorName}</p>
@@ -23,6 +23,7 @@ const FeaturedFoods = ({ food }) => {
                     <p className='text-lg'><span className='font-semibold'>Pickup Location</span>: {food.pickupLocation}</p>
                     <p className='text-lg'><span className='font-semibold'>Expiry date:</span> {date}</p>
                     <p className='text-lg'><span className='font-semibold'>Expiry Time:</span> {time}</p>
+                    <p className='text-lg'><span className='font-semibold'>Additional Notes:</span> {food.additionalNotes}</p>
                     <div className="card-actions justify-end">
                         <Link to={`/food/${food._id}`} className="btn font-montserrat text-base">Details</Link>
                     </div>
