@@ -25,7 +25,7 @@ const AddFood = () => {
 
         const insertedData = { foodName, foodImage, foodQuantity, pickupLocation, expiryDateTime, additionalNotes, donatorId, donatorImage, donatorName, donatorEmail, foodStatus }
 
-        axios.post('http://localhost:3000/addNewFood', insertedData, {withCredentials: true})
+        axios.post('https://ecoeats-server.vercel.app/addNewFood', insertedData, {withCredentials: true})
         .then(res => {
             if(res.data.insertedId)
                 toast.success('Food added successfully.')

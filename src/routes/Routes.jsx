@@ -24,7 +24,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/availableFoods',
-                loader: () => fetch('http://localhost:3000/foods'),
+                loader: () => fetch('https://ecoeats-server.vercel.app/foods'),
                 element: <AvalibleFoods></AvalibleFoods>
             },
             {
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/food/:id',
-                loader: ({params}) => fetch(`http://localhost:3000/food/${params.id}`),
+                loader: ({params}) => fetch(`https://ecoeats-server.vercel.app/food/${params.id}`),
                 element: <PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>
             }
         ]

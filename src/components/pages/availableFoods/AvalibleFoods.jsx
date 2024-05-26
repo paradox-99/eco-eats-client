@@ -12,14 +12,14 @@ const AvalibleFoods = () => {
     const [sortValue, setSortValue] = useState("0");
 
     useEffect(() => {
-        axios.get('http://localhost:3000/foodsCount')
+        axios.get('https://ecoeats-server.vercel.app/foodsCount')
             .then(res => {
                 setCount(res.data.count)
             })
     }, [])
 
     useEffect(() => {
-        fetch(`http://localhost:3000/foodsPerPage?page=${currentPage}&size=${itemPerPage}&sortValue=${sortValue}`)
+        fetch(`https://ecoeats-server.vercel.app/foodsPerPage?page=${currentPage}&size=${itemPerPage}&sortValue=${sortValue}`)
             .then(res => res.json())
             .then(data => setFoodItems(data))
     }, [currentPage, itemPerPage, sortValue]);
@@ -56,7 +56,7 @@ const AvalibleFoods = () => {
 
     const searchFood = () => {
         if (search.length > 0) {
-            axios.get(`http://localhost:3000/searchFood?foodName=${search}`)
+            axios.get(`https://ecoeats-server.vercel.app/searchFood?foodName=${search}`)
                 .then(res => {
                     setCount(res.data.length);
                     setFoodItems(res.data);

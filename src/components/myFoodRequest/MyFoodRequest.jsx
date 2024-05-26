@@ -12,7 +12,7 @@ const MyFoodRequest = () => {
     const { isPending, isError, error, data: foodData } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:3000/userRequestedFood/${user.uid}`, {withCredentials: true})
+            const res = await axios.get(`https://ecoeats-server.vercel.app/userRequestedFood/${user.uid}`, {withCredentials: true})
             .catch(err => {
                 if(err.response.status === 401 || err.response.status === 403 )
                     logOut();

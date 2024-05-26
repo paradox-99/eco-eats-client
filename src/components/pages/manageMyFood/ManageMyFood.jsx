@@ -17,7 +17,7 @@ const ManageMyFood = () => {
     const [foodData, setFoodData] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/manageUserFood/${user.uid}`, {withCredentials: true})
+        axios.get(`https://ecoeats-server.vercel.app/manageUserFood/${user.uid}`, {withCredentials: true})
         .then(res => {
             setFoodData(res.data)
         })
@@ -44,7 +44,7 @@ const ManageMyFood = () => {
 
         const updatedData = { foodName, foodImage, foodQuantity, pickupLocation, expiryDateTime, additionalNotes, donatorId, donatorImage, donatorName, donatorEmail, foodStatus }
 
-        axios.put(`http://localhost:3000/updateFood/${selectedData._id}`, updatedData, {withCredentials: true})
+        axios.put(`https://ecoeats-server.vercel.app/updateFood/${selectedData._id}`, updatedData, {withCredentials: true})
             .then(res => {
                 if (res.data.modifiedCount === 1) {
                     document.getElementById('my_modal_3').close();
@@ -69,7 +69,7 @@ const ManageMyFood = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:3000/deleteFood/${id}`, {withCredentials: true})
+                axios.delete(`https://ecoeats-server.vercel.app/deleteFood/${id}`, {withCredentials: true})
                     .then(data => {
                         if (data.data.deletedCount === 1) {
                             const remaining = foodData.filter(spot => spot._id !== id);

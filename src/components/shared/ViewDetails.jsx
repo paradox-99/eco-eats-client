@@ -6,20 +6,20 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const ViewDetails = () => {
-    
+
     const food = useLoaderData();
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [dateAndTime, setTimeAndDate] = useState([]);
     const [time, setTime] = useState([]);
     const [date, setDate] = useState([]);
     const navigate = useNavigate();
 
-    const {expiryDateTime} = food;
+    const { expiryDateTime } = food;
 
     const DateAndTime = new Date(expiryDateTime);
     const DAte = DateAndTime.toLocaleDateString();
     const Time = DateAndTime.toLocaleTimeString();
-    
+
     const { register, handleSubmit } = useForm();
 
     const onSubmit = async (data) => {
@@ -39,18 +39,18 @@ const ViewDetails = () => {
         const expireDate = food.expiryDateTime;
         const note = data.note;
 
-        const foodRequestData = {foodId, foodName, foodQuantity, foodURL, donatorName, donatorEmail, requestId, requestEmail, requestDate, requestTime, pickupLocation, expireDate, note}
-        
-        axios.post('http://localhost:3000/foodRequest', foodRequestData)
-        .then(res => {
-            if(res.data.insertedId){
-                document.getElementById('my_modal_3').close()
-                toast.success('Request Successful');
-                const foodStatus ={ foodStatus: "unavailable" }
-                axios.patch(`http://localhost:3000/food/updateStatus/${foodId}`, foodStatus);
-                navigate('/myFoodRequest');
-            }
-        })
+        const foodRequestData = { foodId, foodName, foodQuantity, foodURL, donatorName, donatorEmail, requestId, requestEmail, requestDate, requestTime, pickupLocation, expireDate, note }
+
+        axios.post('https://ecoeats-server.vercel.app/foodRequest', foodRequestData)
+            .then(res => {
+                if (res.data.insertedId) {
+                    document.getElementById('my_modal_3').close()
+                    toast.success('Request Successful');
+                    const foodStatus = { foodStatus: "requested" }
+                    axios.patch(`https://ecoeats-server.vercel.app/food/updateStatus/${foodId}`, foodStatus);
+                    navigate('/myFoodRequest');
+                }
+            })
     }
 
     const setDateAndTime = () => {
@@ -63,16 +63,23 @@ const ViewDetails = () => {
 
     return (
         <div>
-            <div>
-                <h1 className="font-pirata text-3xl md:text-4xl lg:text-5xl mt-20 mb-5">{food.foodName}</h1>
-                <h4 className="font-montserrat md:text-lg"><span className="text-lg md:text-xl font-semibold"> Quantity:</span> {food.foodQuantity} person</h4>
-                <h4 className="font-montserrat md:text-lg mt-2"><span className="text-lg md:text-xl font-semibold">Expired date: </span> {DAte}</h4>
-                <h4 className="font-montserrat md:text-lg mt-2"><span className="text-lg md:text-xl font-semibold">Expired time: </span> {Time}</h4>
+            <div className="flex flex-col md:flex-row justify-between mt-20">
+                <div>
+                    <h1 className="font-pirata text-3xl md:text-4xl lg:text-5xl mb-5">{food.foodName}</h1>
+                    <h4 className="font-montserrat md:text-lg"><span className="text-lg md:text-xl font-semibold"> Quantity:</span> {food.foodQuantity} person</h4>
+                    <h4 className="font-montserrat md:text-lg mt-2"><span className="text-lg md:text-xl font-semibold">Expired date: </span> {DAte}</h4>
+                    <h4 className="font-montserrat md:text-lg mt-2"><span className="text-lg md:text-xl font-semibold">Expired time: </span> {Time}</h4>
+                </div>
+                <div>
+                    <h2 className="md:text-2xl lg:text-3xl font-bold">Donar</h2>
+                    <h3 className="text-lg lg:text-xl font-medium mt-5 mb-2">Name: <span className=" font-semibold">{food.donatorName}</span></h3>
+                    <h3 className="text-lg lg:text-xl font-medium">Pickup location: <span className=" font-semibold">{food.pickupLocation}</span></h3>
+                </div>
             </div>
             <div className="mt-10">
                 <img src={food.foodImage} alt={food.foodName} className="w-full rounded-lg lg:h-[650px]" />
                 <div className="flex justify-end">
-                    <button onClick={()=> setDateAndTime()} className="btn btn-primary mt-5 font-montserrat btn-sm md:btn md:text-lg lg:text-xl">Request Food</button>
+                    <button onClick={() => setDateAndTime()} className="btn btn-primary mt-5 font-montserrat btn-sm md:btn md:text-lg lg:text-xl">Request Food</button>
                 </div>
             </div>
             <dialog id="my_modal_3" className="modal">
@@ -83,60 +90,60 @@ const ViewDetails = () => {
                             <div className="flex justify-center gap-7">
                                 <fieldset className="border-2 border-primary rounded w-80">
                                     <legend className="ml-4">Food Name</legend>
-                                    <input {...register('foodName')} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" disabled defaultValue={food.foodName}/>
+                                    <input {...register('foodName')} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" disabled defaultValue={food.foodName} />
                                 </fieldset>
                                 <fieldset className="border-2 border-primary rounded w-80">
                                     <legend className="ml-4">Food Photo URL</legend>
-                                    <input {...register('foodURL')} type="text"  className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" disabled defaultValue={food.foodImage}/>
+                                    <input {...register('foodURL')} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" disabled defaultValue={food.foodImage} />
                                 </fieldset>
                             </div>
                             <div className="flex justify-center gap-7">
                                 <fieldset className="border-2 border-primary rounded w-80">
                                     <legend className="ml-4">Food Id</legend>
-                                    <input {...register('foodId')} type="text"  className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" disabled defaultValue={food._id}/>
+                                    <input {...register('foodId')} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" disabled defaultValue={food._id} />
                                 </fieldset>
                                 <fieldset className="border-2 border-primary rounded w-80">
                                     <legend className="ml-4">Donator Name</legend>
-                                    <input {...register('donatorName')} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" disabled defaultValue={food.donatorName}/>
+                                    <input {...register('donatorName')} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" disabled defaultValue={food.donatorName} />
                                 </fieldset>
                             </div>
                             <div className="flex justify-center gap-7">
                                 <fieldset className="border-2 border-primary rounded w-80">
                                     <legend className="ml-4">Donator Email</legend>
-                                    <input  {...register('donatorEmail')} type="text"  className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" disabled defaultValue={food.donatorEmail}/>
+                                    <input  {...register('donatorEmail')} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" disabled defaultValue={food.donatorEmail} />
                                 </fieldset>
                                 <fieldset className="border-2 border-primary rounded w-80">
                                     <legend className="ml-4">Your Email</legend>
-                                    <input {...register('yourEmail')} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" disabled defaultValue={user.email}/>
+                                    <input {...register('yourEmail')} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" disabled defaultValue={user.email} />
                                 </fieldset>
                             </div>
                             <div className="flex justify-center gap-7">
                                 <fieldset className="border-2 border-primary rounded w-80">
                                     <legend className="ml-4">Request Date</legend>
-                                    <input {...register('requestDate')} type="text"  className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" disabled defaultValue={dateAndTime}/>
+                                    <input {...register('requestDate')} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" disabled defaultValue={dateAndTime} />
                                 </fieldset>
                                 <fieldset className="border-2 border-primary rounded w-80">
                                     <legend className="ml-4">Pickup Location</legend>
-                                    <input {...register('pickupLocation')} type="text"  className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" disabled defaultValue={food.pickupLocation}/>
+                                    <input {...register('pickupLocation')} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" disabled defaultValue={food.pickupLocation} />
                                 </fieldset>
                             </div>
                             <div className="flex justify-center gap-7">
                                 <fieldset className="border-2 border-primary rounded w-80">
                                     <legend className="ml-4">Expire Date</legend>
-                                    <input {...register('expireDate')} type="text"  className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" disabled defaultValue={food.expiryDateTime}/>
+                                    <input {...register('expireDate')} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" disabled defaultValue={food.expiryDateTime} />
 
                                 </fieldset>
                                 <fieldset className="border-2 border-primary rounded w-80">
                                     <legend className="ml-4">Additional Note</legend>
-                                    <input {...register('note')} type="text"  className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" defaultValue={food.additionalNotes}/>
+                                    <input {...register('note')} type="text" className="md:text-lg lg:text-xl p-2 w-full focus:outline-none bg-inherit" defaultValue={food.additionalNotes} />
                                 </fieldset>
                             </div>
                             <div className="flex justify-center">
-                                <input type="submit" value="Request" className="btn btn-primary text-lg font-montserrat"/>
+                                <input type="submit" value="Request" className="btn btn-primary text-lg font-montserrat" />
                             </div>
                         </div>
                     </form>
-                        <button onClick={() => document.getElementById('my_modal_3').close()} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    <button onClick={() => document.getElementById('my_modal_3').close()} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                 </div>
             </dialog>
         </div>

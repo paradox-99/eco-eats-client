@@ -1,11 +1,11 @@
-import { useRouteError } from "react-router-dom";
+import { Link, useRouteError } from "react-router-dom";
 
 const ErrorPage = () => {
 
     const error = useRouteError();
 
     return (
-        <div id="error-page" className="flex items-center justify-center h-screen text-center">
+        <div id="error-page" className="flex flex-col gap-10 items-center justify-center h-screen text-center">
             <div className="flex flex-col items-center justify-center">
                 <img src="/error.jpg" alt="Error image" className="h-[350px] w-[350px]"/>
                 <h1 className="font-font_playFira text-6xl font-bold mb-4 text-colorPrimary">Oops!</h1>
@@ -14,6 +14,7 @@ const ErrorPage = () => {
                     <i>{error.statusText || error.message}</i>
                 </p>
             </div>
+            <Link to={'/'} className="btn btn-primary text-lg text-white">Back to Home</Link>
         </div>
     );
 }

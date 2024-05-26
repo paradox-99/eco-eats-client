@@ -11,14 +11,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { ImQuotesLeft } from "react-icons/im";
-import './styles.css'
+import { motion } from "framer-motion";
 
 const Home = () => {
 
     const { isPending, isError, error, data: foods } = useQuery({
         queryKey: ['foods'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:3000/foods-home');
+            const res = await axios.get('https://ecoeats-server.vercel.app/foods-home');
             return res.data;
         }
     })
@@ -70,7 +70,12 @@ const Home = () => {
                     }
                 </div>
                 <div className="mt-10 flex justify-center">
-                    <Link to="/availableFoods"><button className="btn btn-primary font-montserrat text-lg text-white">See All Foods</button></Link>
+                    <motion.div
+                        className="box"
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+                        <Link to="/availableFoods"><button className="btn btn-primary font-montserrat text-lg text-white">See All Foods</button></Link>
+                    </motion.div>
                 </div>
             </div>
             <div className="bg-base-200 py-16">
@@ -79,7 +84,7 @@ const Home = () => {
                     <Swiper
                         pagination={{
                             dynamicBullets: true,
-                          }}
+                        }}
                         autoplay={{
                             delay: 2500,
                             disableOnInteraction: false,
@@ -89,28 +94,28 @@ const Home = () => {
                         className="">
                         <SwiperSlide>
                             <div className="flex flex-col justify-center items-center w-full mt-8">
-                                <ImQuotesLeft className="text-3xl md:text-4xl lg:text-5xl"/>
+                                <ImQuotesLeft className="text-3xl md:text-4xl lg:text-5xl" />
                                 <h3 className="text-2xl mt-4 mb-3 font-semibold">Alice Johnson</h3>
                                 <p className="text-lg text-center">As a restaurant owner, this platform allows me to donate leftover food easily. <br /> It's great to know that the food is going to people who really need it.</p>
                             </div>
                         </SwiperSlide>
                         <SwiperSlide>
                             <div className="flex flex-col justify-center items-center w-full mt-8">
-                                <ImQuotesLeft className="text-3xl md:text-4xl lg:text-5xl"/>
+                                <ImQuotesLeft className="text-3xl md:text-4xl lg:text-5xl" />
                                 <h3 className="text-2xl mt-4 mb-3 font-semibold">Sophia Martinez</h3>
                                 <p className="text-lg text-center">This platform is fantastic! It's heartwarming to see how surplus food can be <br /> redirected to help those in need. Highly recommend it to everyone.</p>
                             </div>
                         </SwiperSlide>
                         <SwiperSlide>
                             <div className="flex flex-col justify-center items-center w-full mt-8">
-                                <ImQuotesLeft className="text-3xl md:text-4xl lg:text-5xl"/>
+                                <ImQuotesLeft className="text-3xl md:text-4xl lg:text-5xl" />
                                 <h3 className="text-2xl mt-4 mb-3 font-semibold">Sophia Martinez</h3>
                                 <p className="text-lg text-center">I've shared and received food through this platform, and the experience has <br /> been amazing every time.  It's a wonderful initiative that truly makes a difference.</p>
                             </div>
                         </SwiperSlide>
                         <SwiperSlide>
                             <div className="flex flex-col justify-center items-center w-full mt-8">
-                                <ImQuotesLeft className="text-3xl md:text-4xl lg:text-5xl"/>
+                                <ImQuotesLeft className="text-3xl md:text-4xl lg:text-5xl" />
                                 <h3 className="text-2xl mt-4 mb-3 font-semibold">Olivia Lee</h3>
                                 <p className="text-lg text-center">This platform has made it so easy to connect with others and share food <br /> that would otherwise go to waste. It's a brilliant idea that's making a real impact.</p>
                             </div>
@@ -118,7 +123,7 @@ const Home = () => {
                     </Swiper>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
