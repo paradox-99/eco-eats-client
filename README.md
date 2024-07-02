@@ -42,3 +42,10 @@ React tools:
 - tanstack query
 - react loader spinner
 
+### Run in Local
+<p> To run this project in your local system do- 
+<li>git fetch https://github.com/paradox-99/eco-eats-client.git</li>
+<li>open folder</li>
+<li>in cmd run- npm install</li>
+</p>
+
