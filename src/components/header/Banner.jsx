@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 
 const Banner = () => {
   return (
-    <div className='mt-10'>
+    <div className=''>
       <Swiper
         navigation={true}
         autoplay={{

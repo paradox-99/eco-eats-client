@@ -20,12 +20,14 @@ p{
     color:unset;
 }
 .menu li > *:not(ul, .menu-title, details, .btn).active:hover {
-    background-color: #ff8468;
-    color: #131313;
+    background-color: #ffffff;
+    border-bottom: 3px solid #ff421c7b;
+    border-radius: 0px;
 }
 .menu li > *:not(ul, .menu-title, details, .btn):hover {
-    background-color: #fc9a86;
-    color: #131313;
+    background-color: #ffffff;
+    border-bottom: 3px solid #ff421c7b;
+    border-radius: 0px;
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1100px) {
